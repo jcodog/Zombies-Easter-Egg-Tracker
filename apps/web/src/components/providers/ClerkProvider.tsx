@@ -14,6 +14,7 @@ export const ClerkProvider = ({ children }: ClerkProviderProps) => {
   return (
     <ImportedProvider
       appearance={{
+        cssLayerName: "clerk",
         theme: resolvedTheme === "dark" ? [dark, shadcn] : [shadcn],
       }}
     >
