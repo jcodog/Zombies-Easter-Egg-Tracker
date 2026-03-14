@@ -1,6 +1,41 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
-export const PUBLIC_ROUTE_PATTERNS = ["/", "/sign-in", "/sign-up"]
+function normalizeAuthPath(value: string | undefined, fallback: string) {
+  if (!value) {
+    return fallback
+  }
+
+  const trimmed = value.trim()
+
+  if (!trimmed) {
+    return fallback
+  }
+
+  try {
+    if (/^https?:\/\//i.test(trimmed)) {
+      return new URL(trimmed).pathname || fallback
+    }
+  } catch {
+    return fallback
+  }
+
+  return trimmed.startsWith("/") ? trimmed : `/${trimmed}`
+}
+
+const signInPath = normalizeAuthPath(
+  process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
+  "/sign-in"
+)
+const signUpPath = normalizeAuthPath(
+  process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL,
+  "/sign-up"
+)
+
+export const PUBLIC_ROUTE_PATTERNS = [
+  "/",
+  `${signInPath}(.*)`,
+  `${signUpPath}(.*)`,
+]
 
 export const isPublicRoute = createRouteMatcher(PUBLIC_ROUTE_PATTERNS)
 
