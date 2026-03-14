@@ -58,12 +58,7 @@ export declare const api: {
   };
   users: {
     mutations: {
-      ensureUser: FunctionReference<
-        "mutation",
-        "public",
-        { clerkId: string; email?: string; username?: string },
-        any
-      >;
+      ensureCurrentUser: FunctionReference<"mutation", "public", {}, any>;
     };
   };
 };

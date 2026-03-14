@@ -1,27 +1,30 @@
 import { v } from "convex/values"
 import { internalMutation, mutation } from "../_generated/server"
 
-export const ensureUser = mutation({
-  args: {
-    clerkId: v.string(),
-    username: v.optional(v.string()),
-    email: v.optional(v.string()),
-  },
-  handler: async (ctx, args) => {
+export const ensureCurrentUser = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (!identity) throw new Error("Unauthorized")
+
+    const clerkId = identity.subject
+
     const existing = await ctx.db
       .query("users")
-      .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+      .withIndex("by_clerk_id", (q) => q.eq("clerkId", clerkId))
       .unique()
 
-    if (existing) return existing._id
+    if (existing) return existing
 
-    return await ctx.db.insert("users", {
-      clerkId: args.clerkId,
-      username: args.username,
-      email: args.email,
+    const id = await ctx.db.insert("users", {
+      clerkId,
+      username: identity.nickname ?? undefined,
+      email: identity.email ?? undefined,
       createdAt: Date.now(),
       updatedAt: Date.now(),
     })
+
+    return await ctx.db.get(id)
   },
 })
 
