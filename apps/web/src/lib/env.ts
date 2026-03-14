@@ -10,10 +10,12 @@ export const env = createEnv({
     NEXT_PUBLIC_CONVEX_URL: z.url().min(1),
     NEXT_PUBLIC_CONVEX_SITE_URL: z.url().min(1),
   },
-  experimental__runtimeEnv: {
+  runtimeEnv: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     NEXT_PUBLIC_CONVEX_URL: process.env.NEXT_PUBLIC_CONVEX_URL,
     NEXT_PUBLIC_CONVEX_SITE_URL: process.env.NEXT_PUBLIC_CONVEX_SITE_URL,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
   },
+  emptyStringAsUndefined: true,
 })
