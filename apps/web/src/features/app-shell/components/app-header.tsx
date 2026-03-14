@@ -11,7 +11,7 @@ export function AppHeader() {
   const pathname = usePathname()
 
   return (
-    <header className="border-b border-border bg-background">
+    <header className="sticky top-0 z-30 border-b border-border/70 bg-background/90 backdrop-blur">
       <div className="flex h-14 items-center justify-between gap-4 px-5 sm:px-8">
         <div className="flex min-w-0 items-center gap-3">
           <SidebarTrigger className="md:hidden" />
@@ -24,11 +24,6 @@ export function AppHeader() {
         </div>
 
         <div className="flex items-center gap-2">
-          {pathname !== "/app/account" ? (
-            <Button asChild size="sm" variant="ghost">
-              <Link href="/app/account">Account</Link>
-            </Button>
-          ) : null}
           <UserButton />
         </div>
       </div>

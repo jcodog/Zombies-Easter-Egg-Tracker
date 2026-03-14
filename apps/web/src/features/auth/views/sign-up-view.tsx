@@ -2,6 +2,11 @@ import { SignUp } from "@clerk/nextjs"
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 
+import {
+  AuthPanel,
+  authPanelAppearance,
+} from "@/features/auth/components/auth-panel"
+
 export async function SignUpView() {
   const { userId } = await auth()
 
@@ -10,11 +15,14 @@ export async function SignUpView() {
   }
 
   return (
-    <SignUp
-      fallbackRedirectUrl="/app"
-      path="/sign-up"
-      routing="path"
-      signInUrl="/sign-in"
-    />
+    <AuthPanel>
+      <SignUp
+        appearance={authPanelAppearance}
+        fallbackRedirectUrl="/app"
+        path="/sign-up"
+        routing="path"
+        signInUrl="/sign-in"
+      />
+    </AuthPanel>
   )
 }

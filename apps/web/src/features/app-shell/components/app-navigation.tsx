@@ -1,10 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import {
-  IconLayoutDashboard,
-  IconSettings2,
-} from "@tabler/icons-react"
+import { IconLayoutDashboard, IconSettings2 } from "@tabler/icons-react"
 import { usePathname } from "next/navigation"
 
 import {
@@ -22,12 +19,6 @@ const navigationItems = [
     label: "Dashboard",
     icon: IconLayoutDashboard,
     matches: (pathname: string) => pathname === "/app",
-  },
-  {
-    href: "/app/account",
-    label: "Account",
-    icon: IconSettings2,
-    matches: (pathname: string) => pathname.startsWith("/app/account"),
   },
 ] as const
 

@@ -3,48 +3,60 @@ import { IconArrowRight } from "@tabler/icons-react"
 
 import { Button } from "@workspace/ui/components/button"
 
+import { LandingNav } from "@/features/marketing/components/landing-nav"
+import { MarketingPreview } from "@/features/marketing/components/marketing-preview"
+import { MarketingValueStrip } from "@/features/marketing/components/marketing-value-strip"
+import { ProductMark } from "@/features/marketing/components/product-mark"
+
 export function LandingView() {
   return (
     <main className="relative min-h-svh overflow-hidden bg-background">
+      <LandingNav />
+
       <div aria-hidden className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.03)_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,0.02)_100%)]" />
-        <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle,rgba(17,24,39,0.12)_1px,transparent_1px)] [background-size:22px_22px] dark:opacity-25 dark:[background-image:radial-gradient(circle,rgba(255,255,255,0.08)_1px,transparent_1px)]" />
-        <div className="absolute inset-y-0 left-[76%] hidden w-px bg-border lg:block" />
-        <div className="absolute left-[12%] top-[18%] size-40 rounded-full bg-primary/10 blur-3xl dark:bg-primary/16" />
-        <div className="absolute bottom-[18%] right-[14%] hidden h-px w-44 bg-gradient-to-r from-primary/70 to-transparent lg:block" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,transparent_34%,rgba(255,255,255,0.03)_100%)] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.018)_0%,transparent_30%,rgba(255,255,255,0.02)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-size-[22px_22px] opacity-30" />
+        <div className="absolute inset-y-0 left-1/2 hidden w-px bg-border/70 lg:block" />
+        <div className="absolute top-[16%] left-[9%] h-28 w-28 bg-primary/10 blur-3xl" />
+        <div className="absolute top-[28%] right-[12%] h-24 w-24 bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-[14%] left-[34%] h-px w-40 bg-linear-to-r from-primary/70 to-transparent" />
       </div>
 
-      <div className="relative mx-auto flex min-h-svh max-w-6xl flex-col justify-between px-6 py-8 sm:px-10 lg:px-14 lg:py-10">
-        <div className="flex items-center gap-3">
-          <span className="size-2 rounded-full bg-primary" />
-          <span className="text-sm font-medium tracking-tight">
-            Zombies EE Tracker
-          </span>
-        </div>
+      <div className="relative mx-auto grid min-h-svh max-w-7xl gap-10 px-6 pb-6 pt-20 sm:px-10 sm:pb-8 sm:pt-24 lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-center lg:gap-10 lg:px-14 lg:pb-8 lg:pt-20">
+          <section className="flex flex-col gap-6 lg:pr-8">
+            <ProductMark />
 
-        <section className="flex max-w-3xl flex-col gap-8 pb-12 pt-16 sm:pb-16 sm:pt-24 lg:pb-20">
-          <div className="flex max-w-2xl flex-col gap-5">
-            <h1 className="text-pretty text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl">
-              Keep every Easter egg run readable from first setup to final step.
-            </h1>
-            <p className="max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-              A focused workspace for route decisions, checkpoint progress, and
-              the notes that matter when a clear is still in motion.
-            </p>
-          </div>
+            <div className="flex max-w-[44rem] flex-col gap-5 border-l border-border/80 pl-5 sm:pl-7">
+              <div className="flex flex-col gap-3">
+                <h1 className="max-w-[42rem] text-4xl font-medium tracking-tight text-pretty sm:text-5xl lg:text-[4.6rem] lg:leading-[0.96]">
+                  Keep the Easter egg route readable while the run is live.
+                </h1>
+                <p className="max-w-[38rem] text-base leading-6 text-muted-foreground sm:text-[1.02rem]">
+                  Zombies Easter Egg Tracker gives every attempt a clean run
+                  board for phase order, checkpoint progress, and the route
+                  notes that usually get lost between setup and the final clear.
+                </p>
+              </div>
 
-          <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg">
-              <Link href="/sign-up">
-                Create account
-                <IconArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/sign-in">Sign in</Link>
-            </Button>
-          </div>
-        </section>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link href="/sign-up">
+                    Create account
+                    <IconArrowRight data-icon="inline-end" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/sign-in">Sign in</Link>
+                </Button>
+              </div>
+            </div>
+
+            <MarketingValueStrip />
+          </section>
+
+          <section className="flex items-center lg:justify-end">
+            <MarketingPreview />
+          </section>
       </div>
     </main>
   )

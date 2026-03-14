@@ -1,5 +1,13 @@
 import { UserProfile } from "@clerk/nextjs"
 
+const userProfileAppearance = {
+  elements: {
+    rootBox: "w-full",
+    cardBox: "w-full shadow-none",
+    card: "w-full rounded-none border-0 bg-transparent p-0 shadow-none",
+  },
+}
+
 export function AccountView() {
   return (
     <section className="flex max-w-6xl flex-col gap-8">
@@ -13,8 +21,12 @@ export function AccountView() {
         </p>
       </div>
 
-      <div className="max-w-5xl border-t border-border pt-6">
-        <UserProfile routing="hash" />
+      <div className="relative max-w-5xl overflow-hidden border border-border/70 bg-card/45 p-3 sm:p-4">
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/60 to-transparent"
+        />
+        <UserProfile appearance={userProfileAppearance} routing="hash" />
       </div>
     </section>
   )
