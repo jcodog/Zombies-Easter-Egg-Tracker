@@ -13,7 +13,7 @@ export interface QuestStep {
 export interface QuestPhase {
   id: string
   title: string
-  ordeR: number
+  order: number
 }
 
 export interface QuestRoute {

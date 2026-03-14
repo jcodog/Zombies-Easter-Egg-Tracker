@@ -3,14 +3,14 @@ import type { QuestStep } from "@/domain/content"
 export const paradoxJunctionMainSteps: QuestStep[] = [
   {
     id: "get-vial",
-    title: "Pick up the vile",
+    title: "Pick up the vial",
     phaseId: "broken-setup",
     order: 1,
     timeline: "broken",
   },
   {
     id: "fill-vial-with-acid",
-    title: "Fill the vile with acid",
+    title: "Fill the vial with acid",
     phaseId: "broken-setup",
     order: 2,
     timeline: "broken",

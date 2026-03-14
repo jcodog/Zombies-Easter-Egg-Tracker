@@ -10,7 +10,7 @@
     "format": "turbo format",
     "typecheck": "turbo typecheck",
     "backend:dev": "bun --cwd packages/backend run dev",
-    "backend:typescheck": "bun --cwd packages/backend run typescheck"
+    "backend:typecheck": "bun --cwd packages/backend run typecheck"
   },
   "dependencies": {
     "minimatch": "^10.2.4"
