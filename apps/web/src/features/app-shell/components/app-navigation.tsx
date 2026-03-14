@@ -37,6 +37,7 @@ export function AppNavigation() {
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
+                  className="group-data-[collapsible=icon]:mx-auto group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0!"
                   isActive={item.matches(pathname)}
                   tooltip={item.label}
                 >
