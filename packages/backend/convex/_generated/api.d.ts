@@ -65,14 +65,6 @@ export declare const api: {
         any
       >;
     };
-    queries: {
-      getByClerkId: FunctionReference<
-        "query",
-        "public",
-        { clerkId: string },
-        any
-      >;
-    };
   };
 };
 
@@ -84,6 +76,38 @@ export declare const api: {
  * const myFunctionReference = internal.myModule.myFunction;
  * ```
  */
-export declare const internal: {};
+export declare const internal: {
+  users: {
+    mutations: {
+      deleteFromClerkWebhook: FunctionReference<
+        "mutation",
+        "internal",
+        { clerkId: string },
+        any
+      >;
+      upsertFromClerkWebhook: FunctionReference<
+        "mutation",
+        "internal",
+        {
+          clerkId: string;
+          email: string | null;
+          firstName: string | null;
+          imageUrl: string | null;
+          lastName: string | null;
+          username: string | null;
+        },
+        any
+      >;
+    };
+    queries: {
+      getByClerkId: FunctionReference<
+        "query",
+        "internal",
+        { clerkId: string },
+        any
+      >;
+    };
+  };
+};
 
 export declare const components: {};

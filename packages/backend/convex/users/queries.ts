@@ -1,7 +1,7 @@
 import { v } from "convex/values"
-import { query } from "../_generated/server"
+import { internalQuery } from "../_generated/server"
 
-export const getByClerkId = query({
+export const getByClerkId = internalQuery({
   args: { clerkId: v.string() },
   handler: async (ctx, args) => {
     return await ctx.db
