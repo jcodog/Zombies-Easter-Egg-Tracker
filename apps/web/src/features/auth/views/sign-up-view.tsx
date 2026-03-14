@@ -6,22 +6,30 @@ import {
   AuthPanel,
   authPanelAppearance,
 } from "@/features/auth/components/auth-panel"
+import { env } from "@/lib/env"
 
 export async function SignUpView() {
   const { userId } = await auth()
+  const signUpUrl = env.NEXT_PUBLIC_CLERK_SIGN_UP_URL ?? "/sign-up"
+  const signUpFallbackRedirectUrl =
+    env.NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL ?? "/app"
 
   if (userId) {
-    redirect("/app")
+    redirect(
+      env.NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL ??
+        signUpFallbackRedirectUrl
+    )
   }
 
   return (
     <AuthPanel>
       <SignUp
         appearance={authPanelAppearance}
-        fallbackRedirectUrl="/app"
-        path="/sign-up"
+        fallbackRedirectUrl={signUpFallbackRedirectUrl}
+        forceRedirectUrl={env.NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL}
+        path={signUpUrl}
         routing="path"
-        signInUrl="/sign-in"
+        signInUrl={env.NEXT_PUBLIC_CLERK_SIGN_IN_URL ?? "/sign-in"}
       />
     </AuthPanel>
   )

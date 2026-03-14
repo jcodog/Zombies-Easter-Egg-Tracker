@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { IconLayoutDashboard, IconSettings2 } from "@tabler/icons-react"
+import { IconLayoutDashboard } from "@tabler/icons-react"
 import { usePathname } from "next/navigation"
 
 import {
@@ -27,7 +27,7 @@ export function AppNavigation() {
   const { isMobile, setOpenMobile } = useSidebar()
 
   return (
-    <SidebarContent className="px-3 py-4">
+    <SidebarContent className="px-2 py-3">
       <SidebarGroup className="p-0">
         <SidebarMenu>
           {navigationItems.map((item) => {
@@ -35,7 +35,11 @@ export function AppNavigation() {
 
             return (
               <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton asChild isActive={item.matches(pathname)}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={item.matches(pathname)}
+                  tooltip={item.label}
+                >
                   <Link
                     href={item.href}
                     onClick={() => {
@@ -45,7 +49,9 @@ export function AppNavigation() {
                     }}
                   >
                     <Icon data-icon="inline-start" />
-                    <span>{item.label}</span>
+                    <span className="group-data-[collapsible=icon]:hidden">
+                      {item.label}
+                    </span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
